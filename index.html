@@ -29,19 +29,20 @@
             <!--Aggiungiamo elementi nella lista-->
             <div class="input-group mb-3">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Scrivi qui..">
-                    <button class="btn btn-outline-secondary" type="button">Aggiungi</button>
+                    <input v-model="newTask" type="text" class="form-control" placeholder="Scrivi qui">
+                    <button @click="addTask" class="btn btn-outline-secondary" type="button">Aggiungi</button>
                 </div>
             </div>
 
-            <h3 class="text-center">Non ci sono cose da fare</h3>
+            <!--MESSAGGIO CHE DOVRA COMPARIRE SOLO E SOLTANTO SE LA LISTA SARA TUTTA DEPENNATA-->
+            <h3 class="text-center" v-if="!tasks.length">Non ci sono cose da fare... Sei SICURO??</h3>
 
             <!--Lista-->
             <ul class="list-group my-5" v-else>
 
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                    <button type="button" class="btn-close" aria-label="Close"></button>
+                <li v-for="(tasks, index) in tasks"
+                    class="list-group-item d-flex justify-content-between align-items-center">{{ tasks }}
+                    <button @click="deleteTask(index)" type="button" class="btn-close" aria-label="Close"></button>
                 </li>
 
             </ul>
@@ -51,7 +52,7 @@
 
 
 
-    <script src="./live-coding.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
